@@ -1,0 +1,21 @@
+.msgContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    align-items: center;
+    width: 50vw;
+    max-width: 350px;
+    text-align: center;
+}
+
+.mainText {
+    font-size: 16px;
+    font-weight: 700;
+}
+
+.secondaryText {
+    font-size: 15px;
+    font-weight: 400;
+    color: var(--secondary-text-color);
+    text-wrap: balance;
+}

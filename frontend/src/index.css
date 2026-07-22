@@ -1,0 +1,82 @@
+@font-face {
+  font-family: "GT Walsheim Pro";
+  src: url("./assets/fonts/GTWalsheimPro-Light.woff2") format("woff2"),
+    url("./assets/fonts/GTWalsheimPro-Light.woff") format("woff");
+  font-weight: 200;
+}
+@font-face {
+  font-family: "GT Walsheim Pro";
+  src: url("./assets/fonts/GTWalsheimPro-Regular.woff2") format("woff2"),
+    url("./assets/fonts/GTWalsheimPro-Regular.woff") format("woff");
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: "GT Walsheim Pro";
+  src: url("./assets/fonts/GTWalsheimPro-Medium.woff2") format("woff2"),
+    url("./assets/fonts/GTWalsheimPro-Medium.woff") format("woff");
+  font-weight: 500;
+}
+
+@font-face {
+  font-family: "GT Walsheim Pro";
+  src: url("./assets/fonts/GTWalsheimPro-Bold.woff2") format("woff2"),
+    url("./assets/fonts/GTWalsheimPro-Bold.woff") format("woff");
+  font-weight: 700;
+}
+
+@font-face {
+  font-family: "GT Walsheim Pro";
+  src: url("./assets/fonts/GTWalsheimPro-UltraBold.woff2") format("woff2"),
+    url("./assets/fonts/GTWalsheimPro-UltraBold.woff") format("woff");
+  font-weight: 800;
+}
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --main-text-color: #F3F5F7;
+    --secondary-text-color: #777777;
+    --bg-color: #101010;
+    --primary-btn-color: #ffffff;
+    --primary-btn-text-color: #000000;
+
+    --header-height: 60px;
+}
+
+body {
+    font-family: "GT Walsheim Pro";
+    color: var(--main-text-color);
+    background-color: var(--bg-color);
+    height: 100%;
+}
+
+main {
+    min-height: calc(100vh - var(--header-height));
+    margin-top: var(--header-height);
+    padding: 0 20px 70px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+a {
+    color: var(--main-text-color);
+    font-size: 15px;
+    font-weight: 500;
+    text-decoration: none;
+}
+
+.primary-btn {
+    cursor: pointer;
+    background-color: var(--primary-btn-color);
+    color: var(--primary-btn-text-color);
+    padding: 8px 16px;
+    border-radius: 10px;
+    border: none;
+}
