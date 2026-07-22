@@ -1,0 +1,36 @@
+.header {
+    height: var(--header-height);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: sticky;
+    top: 0;
+    z-index: 5;
+    background-color: var(--bg-color);
+}
+
+.header h1 {
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.logo {
+    display: none;
+    height: 40px;
+    width: 105px;
+}
+
+@media (max-width: 700px) {
+    .header {
+        background-color: var(--header-mobile-color);
+        backdrop-filter: blur(28px);
+    }
+
+    .logo {
+        display: flex;
+    }
+
+    .header h1 {
+        display: none;
+    }
+}
