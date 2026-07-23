@@ -8,6 +8,7 @@
     flex-direction: column;
     gap: 40px;
     padding: 19px 10px;
+    background-color: var(--bg-color);
 }
 
 .logoSmall{

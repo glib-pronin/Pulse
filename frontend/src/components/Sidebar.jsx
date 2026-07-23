@@ -2,39 +2,7 @@ import styles from './Sidebar.module.css'
 import LogoIcon from '../assets/logo_icon.svg?react'
 import LogoIconBig from '../assets/logo_big.svg?react'
 import { NavLink, Link } from 'react-router-dom'
-import { Home, Heart, Search, Plus, UserRound, SunMoon  } from 'lucide-react'
-
-const SIDEBAR_LINKS = [
-    {
-        icon: Home,
-        text: 'Feed',
-        to: '/',
-    },
-    {
-        icon: Heart,
-        text: 'Following',
-        to: '/following',
-    },
-    {
-        icon: Plus,
-        text: 'New post',
-        type: 'button'
-    },
-    {
-        icon: Search,
-        text: 'Search',
-        to: '/search',
-    },
-    {
-        icon: UserRound,
-        text: 'Profile',
-        to: '/profile/test',
-    },
-    {
-        icon: SunMoon,
-        text: 'Appearance',
-    },
-]
+import { NAVIGATION } from '../constants/navigations'
 
 export default function Sidebar() {
     return (
@@ -46,7 +14,7 @@ export default function Sidebar() {
                 <LogoIconBig />
             </Link>
             <div className={styles.linksContainer}>
-                {SIDEBAR_LINKS.map(({ icon: Icon, text, to }) => 
+                {NAVIGATION.map(({ icon: Icon, text, to }) => 
                     to ? (
                         <NavLink
                             key={text}

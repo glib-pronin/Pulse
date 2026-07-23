@@ -45,10 +45,13 @@
     --primary-btn-color: #ffffff;
     --primary-btn-text-color: #000000;
     --active-link: #292A2A;
-    --header-mobile-color: rgba(16, 16, 16, 0.85);
+    --element-mobile-color: rgba(16, 16, 16, 0.85);
+    --active-element-mobile-color: rgba(255, 255, 255, 0.08);
 
     --header-height: 70px;
-    --horizontal-content-padding: 20px
+    --footer-height: 50px;
+    --horizontal-main-padding: 20px;
+    --horizontal-element-padding: 20px;
 }
 
 body {
@@ -60,7 +63,7 @@ body {
 
 main {
     min-height: calc(100vh - var(--header-height));
-    padding: 0 var(--horizontal-content-padding) var(--header-height);
+    padding: 0 var(--horizontal-main-padding) var(--header-height);
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -85,9 +88,9 @@ a {
     font-weight: 600;
 }
 
-.login-btn {
-    position: fixed;
-    z-index: 10;
-    top: var(--horizontal-content-padding);
-    right: var(--horizontal-content-padding);
+@media (max-width: 700px) {
+  :root {
+    --header-height: 60px;
+    --horizontal-element-padding: 16px;
+  }
 }

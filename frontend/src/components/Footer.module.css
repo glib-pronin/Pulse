@@ -1,0 +1,36 @@
+.footer {
+    width: 100%;
+    height: var(--footer-height);
+    position: fixed;
+    bottom: 0;
+    background-color: var(--element-mobile-color);
+    backdrop-filter: blur(28px);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 5px var(--horizontal-element-padding);
+}
+
+.link {
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    border-radius: 10px;
+    color: var(--secondary-text-color);
+    cursor: pointer;
+    transition: background-color 0.25s ease;
+}
+
+.link.postBtn {
+    border: none;
+}
+
+.link:hover, .link.postBtn {
+    background-color: var(--active-element-mobile-color);
+}
+
+.link.active {
+    color: var(--main-text-color);
+}

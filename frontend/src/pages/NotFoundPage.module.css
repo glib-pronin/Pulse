@@ -15,6 +15,7 @@
 .mainText {
     font-size: 16px;
     font-weight: 700;
+    text-wrap: balance;
 }
 
 .secondaryText {
