@@ -1,0 +1,11 @@
+.popover {
+    padding: 16px;
+    border-radius: 10px;
+    background-color: var(--popover-bg-color);
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    width: fit-content;
+    position: fixed;
+    z-index: 100;
+}

@@ -48,6 +48,7 @@
   --element-mobile-color: rgba(16, 16, 16, 0.85);
   --active-element-mobile-color: rgba(255, 255, 255, 0.08);
   --border-color: #323333;
+  --popover-bg-color: #262626;
 
   --header-height: 70px;
   --footer-height: 50px;
@@ -74,11 +75,13 @@ main {
 }
 
 .content-container {
+  height: 100%;
+  flex: 1 1 0;
   width: var(--content-width);
   display: flex;
   flex-direction: column;
   align-items: center;
-  border: 1px solid var(--border-color);
+  border: 2px solid var(--border-color);
   border-top: none;
   border-radius: 0 0 20px 20px;
 }
@@ -104,5 +107,10 @@ a {
   :root {
     --header-height: 60px;
     --horizontal-element-padding: 16px;
+    --content-width: 100%;
+  }
+
+  .content-container {
+    border: none;
   }
 }

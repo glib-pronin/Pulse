@@ -3,6 +3,7 @@ import { useMediaQuery } from '../hooks/useMediaQuery'
 import Header from './Header'
 import Sidebar from './Sidebar'
 import Footer from './Footer'
+import ModalRoot from '../components/modals/ModalRoot'
 
 export default function MainLayout() {
     const isMobile = useMediaQuery('(max-width: 700px)')
@@ -21,6 +22,7 @@ export default function MainLayout() {
                     <Sidebar />
                 )
             }
+            <ModalRoot />
         </>
     )
 }
