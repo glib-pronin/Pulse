@@ -33,59 +33,71 @@
 }
 
 * {
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
 }
 
 :root {
-    --main-text-color: #F3F5F7;
-    --secondary-text-color: #777777;
-    --bg-color: #101010;
-    --primary-btn-color: #ffffff;
-    --primary-btn-text-color: #000000;
-    --active-link: #292A2A;
-    --element-mobile-color: rgba(16, 16, 16, 0.85);
-    --active-element-mobile-color: rgba(255, 255, 255, 0.08);
+  --main-text-color: #F3F5F7;
+  --secondary-text-color: #777777;
+  --bg-color: #101010;
+  --primary-btn-color: #ffffff;
+  --primary-btn-text-color: #000000;
+  --active-link: #292A2A;
+  --element-mobile-color: rgba(16, 16, 16, 0.85);
+  --active-element-mobile-color: rgba(255, 255, 255, 0.08);
+  --border-color: #323333;
 
-    --header-height: 70px;
-    --footer-height: 50px;
-    --horizontal-main-padding: 20px;
-    --horizontal-element-padding: 20px;
+  --header-height: 70px;
+  --footer-height: 50px;
+  --horizontal-main-padding: 20px;
+  --horizontal-element-padding: 20px;
+  --content-width: clamp(520px, 70vw, 650px);
 }
 
 body {
-    font-family: "GT Walsheim Pro";
-    color: var(--main-text-color);
-    background-color: var(--bg-color);
-    height: 100%;
+  font-family: "GT Walsheim Pro";
+  color: var(--main-text-color);
+  background-color: var(--bg-color);
+  height: 100%;
 }
 
 main {
-    min-height: calc(100vh - var(--header-height));
-    padding: 0 var(--horizontal-main-padding) var(--header-height);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    position: relative;
+  min-height: calc(100vh - var(--header-height));
+  padding: 0 var(--horizontal-main-padding) var(--header-height);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.content-container {
+  width: var(--content-width);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 1px solid var(--border-color);
+  border-top: none;
+  border-radius: 0 0 20px 20px;
 }
 
 a {
-    color: var(--main-text-color);
-    font-size: 15px;
-    font-weight: 500;
-    text-decoration: none;
+  color: var(--main-text-color);
+  font-size: 15px;
+  font-weight: 500;
+  text-decoration: none;
 }
 
 .primary-btn {
-    cursor: pointer;
-    background-color: var(--primary-btn-color);
-    color: var(--primary-btn-text-color);
-    padding: 8px 16px;
-    border-radius: 10px;
-    border: none;
-    font-weight: 600;
+  cursor: pointer;
+  background-color: var(--primary-btn-color);
+  color: var(--primary-btn-text-color);
+  padding: 8px 16px;
+  border-radius: 10px;
+  border: none;
+  font-weight: 600;
 }
 
 @media (max-width: 700px) {

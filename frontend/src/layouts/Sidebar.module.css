@@ -9,6 +9,7 @@
     gap: 40px;
     padding: 19px 10px;
     background-color: var(--bg-color);
+    overflow-y: auto;
 }
 
 .logoSmall{
@@ -78,11 +79,5 @@
         .logoBig {
             display: flex;
         }
-    }
-}
-
-@media (max-width: 700px) {
-    .sidebar {
-        display: none;
     }
 }

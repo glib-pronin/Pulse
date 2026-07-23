@@ -1,17 +1,26 @@
 import { Outlet } from 'react-router-dom'
-import Header from '../components/Header'
-import Sidebar from '../components/Sidebar'
-import Footer from '../components/Footer'
+import { useMediaQuery } from '../hooks/useMediaQuery'
+import Header from './Header'
+import Sidebar from './Sidebar'
+import Footer from './Footer'
 
 export default function MainLayout() {
+    const isMobile = useMediaQuery('(max-width: 700px)')
+    
     return (
         <>
             <Header />
-            <Sidebar />
             <main>
-                <Outlet />
+                <div className='content-container'>
+                    <Outlet />
+                </div>
             </main>
-            <Footer />
+            {isMobile ? (
+                    <Footer />
+                ) : (
+                    <Sidebar />
+                )
+            }
         </>
     )
 }

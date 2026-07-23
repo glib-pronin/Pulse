@@ -1,5 +1,6 @@
 .footer {
     width: 100%;
+    overflow: hidden;
     height: var(--footer-height);
     position: fixed;
     bottom: 0;
@@ -9,6 +10,11 @@
     align-items: center;
     gap: 8px;
     padding: 5px var(--horizontal-element-padding);
+    transition: transform 0.25s ease;
+}
+
+.footer.hidden {
+    transform: translateY(100%);
 }
 
 .link {

@@ -29,6 +29,7 @@ export default function Header() {
                     </button>
                 )
             }
+            <div className={styles.border}></div>
         </header>
     )
 }

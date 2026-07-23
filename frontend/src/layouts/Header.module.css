@@ -10,6 +10,23 @@
     background-color: var(--bg-color);
 }
 
+.border {
+    z-index: 6;
+    width: var(--content-width);
+    height: calc(100vh - var(--header-height)*2 - 15px);
+    border: 1px solid var(--border-color);
+    border-bottom: none;
+    border-radius: 20px 20px 0 0;
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    transform: translateX(-50%) translateY(100%);
+    box-sizing: border-box;
+    box-shadow: 
+        12px -10px 8px var(--bg-color),
+        -12px -10px 8px var(--bg-color);
+}
+
 .header h1 {
     font-size: 20px;
     font-weight: 600;
