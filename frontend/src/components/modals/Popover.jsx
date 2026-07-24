@@ -24,12 +24,10 @@ export default function Popover({anchorElement, closeModal, children}) {
         }
         setPosition({top, left})
         
-    }, [])
+    }, [anchorElement])
 
     useEffect(() => {
         const handleClickOutside = (e) => {
-            console.log('///');
-            
             if (popoverRef.current && !popoverRef.current.contains(e.target)){
                 closeModal()
             }

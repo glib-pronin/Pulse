@@ -30,7 +30,9 @@ export default function Header() {
             </Link>
             <h1 className={styles.center} >{headerTitle}</h1>
             {user ? (
-                    <Search className={styles.icon}/>
+                    <Link to='/search'>
+                        <Search className={styles.icon}/>
+                    </Link>
                 ) : (
                     <button className='primary-btn'>
                         Log in

@@ -5,6 +5,16 @@
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Pulse</title>
+    <script>
+      function getInitialTheme() {
+        const localTheme = localStorage.getItem('theme')
+        if (localTheme) return localTheme
+        const systemTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'
+        localStorage.setItem('theme', systemTheme)
+        return systemTheme
+      }
+      document.documentElement.dataset.theme = getInitialTheme()
+    </script>
   </head>
   <body>
     <div id="root"></div>

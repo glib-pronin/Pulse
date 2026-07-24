@@ -25,6 +25,12 @@
     height: 30px;
 }
 
+.logoSmall, .logoBig {
+    path {
+        fill: var(--main-text-color);
+    }
+}
+
 .linksContainer {
     display: flex;
     flex-direction: column;

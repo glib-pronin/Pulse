@@ -34,6 +34,7 @@ export const NAVIGATION  = [
     {
         icon: SunMoon,
         text: 'Appearance',
-        footer: false
+        footer: false,
+        clickable: true
     },
 ]

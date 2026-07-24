@@ -8,4 +8,6 @@
     width: fit-content;
     position: fixed;
     z-index: 100;
+    text-align: center;
+    box-shadow: var(--theme-switcher-shadow);
 }
