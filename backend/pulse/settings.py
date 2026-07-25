@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
+    'user_app',
 ]
 
 MIDDLEWARE = [
@@ -50,6 +51,16 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'pulse.urls'
+
+# Custom user
+
+AUTH_USER_MODEL = 'user_app.CustomUser'
+
+# Custom auth_backend
+
+AUTHENTICATION_BACKENDS = [
+    'user_app.backends.UsernameOrEmailBackend'
+]
 
 TEMPLATES = [
     {
@@ -115,6 +126,13 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.2/howto/static-files/
 
 STATIC_URL = 'static/'
+STATICFILES_DIRS = [
+    BASE_DIR / 'static'
+]
+
+# Media for local development
+MEDIA_URL = 'media/'
+MEDIA_ROOT = BASE_DIR / 'media'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
