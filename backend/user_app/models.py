@@ -20,6 +20,9 @@ class EmailVerification(models.Model):
         self.code_hash = make_password(code)
         self.expires_at = timezone.now() + timedelta(minutes=ttl_minutes)
 
+    def should_generate_new_code(self):
+        return self.code_hash is None or self.is_expired()
+
     def is_expired(self):
         return timezone.now() >= self.expires_at if self.expires_at else True
 

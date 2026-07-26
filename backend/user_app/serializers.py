@@ -1,3 +1,5 @@
+from rest_framework_simplejwt.serializers import TokenRefreshSerializer
+from rest_framework.exceptions import ValidationError
 from rest_framework import serializers
 from .models import *
 import re
@@ -34,3 +36,27 @@ class RegistrationSerializer(serializers.ModelSerializer):
 class VerifyEmailSerializer(serializers.Serializer):
     email = serializers.EmailField()
     code = serializers.CharField(max_length=6)
+
+class LoginSerializer(serializers.Serializer):
+    email_or_username = serializers.CharField()
+    password = serializers.CharField(write_only=True)
+
+class CookieTokenRefreshSerializer(TokenRefreshSerializer):
+    refresh = serializers.CharField(required=False)
+
+    def validate(self, attrs):
+        refresh = self.context['request'].COOKIES.get('refresh')
+        if not refresh:
+            raise ValidationError({'detail': 'Refresh token not found.'})
+        attrs['refresh'] = refresh
+        return super().validate(attrs)
+
+class MeSerializer(serializers.ModelSerializer):
+    full_name = serializers.SerializerMethodField()
+
+    def get_full_name(Self, obj):
+        return f'{obj.first_name} {obj.last_name}'
+
+    class Meta:
+        model = CustomUser
+        fields = ['username', 'email', 'bio', 'avatar', 'full_name']
