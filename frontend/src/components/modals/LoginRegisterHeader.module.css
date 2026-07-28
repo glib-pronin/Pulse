@@ -4,6 +4,7 @@
     gap: 16px;
     font-size: var(--modal-header-font-size);
     color: var(--secondary-text-color);
+    font-weight: 500;
     padding-bottom: 8px;
     position: relative;
 }

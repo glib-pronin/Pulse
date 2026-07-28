@@ -57,7 +57,7 @@ export default function ModalRoot() {
                                 onClick={closeModal} 
                             />
                             {config.needsHeader && <LoginRegisterHeader />}
-                            <Modal props={modal.props} />
+                            <Modal {...modal.props} />
                         </div>
                     </div>
                 )

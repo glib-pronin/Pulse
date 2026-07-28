@@ -1,0 +1,46 @@
+.message {
+    color: var(--secondary-text-color);
+    font-size: 16px;
+    width: 90%;
+    text-align: center;
+    text-wrap: balance;
+    align-self: center;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.otpInputs {
+    display: flex;
+    justify-content: space-between;
+}
+
+.otpInputs input {
+    width: 50px;
+    height: 45px;
+    padding: 10px;
+    text-align: center;
+    font-size: 16px;
+}
+
+.btnsContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    width: 100%;
+
+    span {
+        align-self: center;
+        cursor: pointer;
+    }
+}
+
+@media (max-width: 700px) {
+    .otpInputs input {
+        width: 40px;
+        height: 40px;
+    }
+}

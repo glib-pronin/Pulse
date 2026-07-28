@@ -2,15 +2,17 @@ import { useState } from 'react'
 import { Eye, EyeOff } from 'lucide-react'
 import styles from './InputField.module.css'
 
-export default function InputField({ label, type, value, placeholder, handleChange, handleBlur, error }) {
+export default function InputField({ label, type, name, value, placeholder, handleChange, handleBlur, error }) {
     const [isShownPassword, setIsShownPassword] = useState(false)
     return (
         <div className={styles.inputContainer} >
             <label htmlFor="">{label}</label>
             <input 
                 className={type === 'password' ? styles.password : ''}
-                type={type === 'password' ? (isShownPassword ? 'password' : 'text') : type}
+                type={type === 'password' ? (isShownPassword ? 'text' : 'password') : type}
                 placeholder={placeholder}
+                name={name}
+                value={value}
                 onChange={handleChange}
                 onBlur={handleBlur} 
             />
@@ -20,7 +22,7 @@ export default function InputField({ label, type, value, placeholder, handleChan
                     <EyeOff className={styles.passwordEye} onClick={() => setIsShownPassword(true)} />
                 )) 
             }
-            { error && <p className={styles.error} >{error}</p> }
+            { error && <p className='error-msg' >{error}</p> }
         </div>
     )
 }

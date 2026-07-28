@@ -4,12 +4,13 @@
     flex-direction: column;
     gap: 8px;
     position: relative;
+    flex: 1 0 0;
 }
 
 .inputContainer label {
     position: absolute;
     background-color: var(--modal-bg-color);
-    color: var(--label-color);
+    color: var(--main-text-color);
     padding: 0 5px;
     left: 15px;
     transform: translateY(-50%);
@@ -17,22 +18,33 @@
 
 .inputContainer input {
     background-color: inherit;
-    outline: none;
-    border: 1px solid var(--active-theme-switcher-border-color);
-    border-radius: 10px;
     padding: 20px;
     font-size: 16px;
     color: var(--main-text-color);
 }
 
-.password {
-    padding-right: 40px;
+.inputContainer:has(input:focus) {
+    input {
+        border-color: var(--main-text-color);
+    }
+    
+    label {
+        color: var(--main-text-color);
+    }
 }
 
-.error {
-    font-size: 14px;
-    font-weight: 500;
-    color: var(--error-color);
+.inputContainer:has(p) {
+    input {
+        border-color: var(--error-color);
+    }
+
+    label {
+        color: var(--error-color);
+    }
+}
+
+.password {
+    padding-right: 40px;
 }
 
 .passwordEye {

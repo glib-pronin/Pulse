@@ -22,7 +22,7 @@ class AuthService:
             raise AuthenticationFailed({'code': 'invalid_credentials', 'detail': 'Wrong credentials'})
         if hasattr(user, 'email_verification'):
             AuthService.send_verification_code(user)
-            raise AuthenticationFailed({'code': 'email_not_verified', 'detail': 'Email is not verified.'})
+            raise AuthenticationFailed({'code': 'email_not_verified', 'detail': 'Email is not verified.', 'email': user.email})
         return AuthService.create_tokens(user)
 
     @staticmethod

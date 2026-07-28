@@ -8,17 +8,18 @@ export default function LoginRegisterHeader() {
     const activeElement = useRef(null)
 
     useEffect(() => {
-    console.log("Header mounted");
-
-    return () => console.log("Header unmounted");
-    }, []);
-
-    useEffect(() => {
         const hl = highlighter.current
         const aE = activeElement.current
         if (!hl || !aE) return
-        hl.style.width = `${aE.offsetWidth}px`    
-        hl.style.left = `${aE.offsetLeft}px`    
+        
+        const setHighlighter = () => {
+            hl.style.width = `${aE.offsetWidth}px`    
+            hl.style.left = `${aE.offsetLeft}px`    
+        }
+        setHighlighter()
+        window.addEventListener('resize', setHighlighter)
+        
+        return () => window.removeEventListener('resize', setHighlighter)
     }, [modal.name])
 
     return (

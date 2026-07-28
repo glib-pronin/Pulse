@@ -137,18 +137,51 @@ a {
 
 .form-btn {
   padding: 16px;
+  border-radius: 20px;
 }
 
 form {
+  width: 100%;
   display: flex;
   flex-direction: column;
   gap: 36px;
+
+  h2 {
+    text-align: center;
+    font-weight: 500;
+    font-size: var(--modal-header-font-size);
+  }
 }
 
 .inputs-container {
   display: flex;
   flex-direction: column;
   gap: 20px;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+    -webkit-box-shadow: 0 0 0 1000px var(--modal-bg-color) inset !important;
+    box-shadow: 0 0 0 1000px var(--modal-bg-color) inset !important;
+    -webkit-text-fill-color: var(--main-text-color) !important;
+}
+
+input {
+  outline: none;
+  border: 1px solid var(--active-theme-switcher-border-color);
+  border-radius: 10px;
+}
+
+input:focus {
+  border-color: var(--main-text-color);
+}
+
+.error-msg {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--error-color);
 }
 
 @media (max-width: 700px) {
