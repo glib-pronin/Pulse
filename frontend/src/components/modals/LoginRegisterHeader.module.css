@@ -1,0 +1,36 @@
+.modalHeader {
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+    font-size: var(--modal-header-font-size);
+    color: var(--secondary-text-color);
+    padding-bottom: 8px;
+    position: relative;
+}
+
+.modalHeader span {
+    cursor: pointer;
+    transition: color 0.25s ease;
+}
+
+.modalHeader.login span:first-child {
+    color: var(--main-text-color);
+}
+
+.modalHeader.register span:nth-child(2) {
+    color: var(--main-text-color);
+}
+
+.modalHeader span:hover {
+    color: var(--main-text-color);
+}
+
+.highlighter {
+    position: absolute;
+    height: 2px;
+    bottom: 0;
+    background-color: var(--main-text-color);
+    transition: 
+        left 0.25s ease,
+        width 0.25s ease;
+}

@@ -45,12 +45,15 @@
   --popover-bg-color: #262626;
   --active-theme-switcher-color: rgba(255, 255, 255, 0.08);
   --active-theme-switcher-border-color: rgba(243, 245, 247, 0.15);
-
+  --modal-bg-color: #101010;
+  --error-color: #FF3040;
+  
   --header-height: 70px;
   --footer-height: 50px;
   --horizontal-main-padding: 20px;
   --horizontal-element-padding: 20px;
   --content-width: clamp(520px, 70vw, 650px);
+  --modal-header-font-size: 34px;
 }
 
 :root[data-theme="light"] {
@@ -69,6 +72,7 @@
   --theme-switcher-shadow: 0 0 50px rgba(0, 0, 0, 0.25),
         1px 1px 2px rgba(0, 0, 0, 0.05), 
         0 8px 16px rgba(0, 0, 0, 0.06);
+  --modal-bg-color: #ffffff;
 }
 
 * {
@@ -126,8 +130,25 @@ a {
   padding: 8px 16px;
   border-radius: 10px;
   border: none;
-  font-weight: 600;
+  font-size: 15px;
+  font-weight: 500;
   letter-spacing: 0.5px;
+}
+
+.form-btn {
+  padding: 16px;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 36px;
+}
+
+.inputs-container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 }
 
 @media (max-width: 700px) {
@@ -135,9 +156,19 @@ a {
     --header-height: 60px;
     --horizontal-element-padding: 16px;
     --content-width: 100%;
+    --modal-header-font-size: 24px;
   }
 
   .content-container {
     border: none;
+  }
+
+  form {
+    gap: 28px;
+  }
+
+  .login-btn {
+    font-size: 14px;
+    padding: 8px 10px;
   }
 }

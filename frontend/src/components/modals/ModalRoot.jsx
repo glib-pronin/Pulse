@@ -1,12 +1,13 @@
 import { useEffect } from "react"
 import { useModal } from '../../hooks/useModal'
 import { MODAL_CONFIG } from "../../constants/modalsConfig"
+import { X } from 'lucide-react'
 import styles from './ModalRoot.module.css'
 import Popover from "./Popover"
+import LoginRegisterHeader from "./LoginRegisterHeader"
 
 export default function ModalRoot() {
-    const { modal, closeModal } = useModal()
-
+    const { modal, closeModal, openModal } = useModal()
     const config = MODAL_CONFIG[modal.name]
     
     useEffect(() => {
@@ -46,7 +47,19 @@ export default function ModalRoot() {
                     <div 
                         className={styles.backdrop}
                         onClick={closeModal}
-                    ></div>
+                    >
+                        <div 
+                            className={styles.modalContainer} 
+                            onClick={(e) => e.stopPropagation()}
+                        >
+                            <X 
+                                className={styles.closeBtn}
+                                onClick={closeModal} 
+                            />
+                            {config.needsHeader && <LoginRegisterHeader />}
+                            <Modal props={modal.props} />
+                        </div>
+                    </div>
                 )
             }
         </>

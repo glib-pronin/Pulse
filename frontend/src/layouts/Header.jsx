@@ -34,7 +34,7 @@ export default function Header() {
                         <Search className={styles.icon}/>
                     </Link>
                 ) : (
-                    <button className='primary-btn'>
+                    <button className='primary-btn login-btn'>
                         Log in
                     </button>
                 )

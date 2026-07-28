@@ -9,7 +9,8 @@ const initialState = {
 }
 
 export default function ModalProvider({ children }) {
-    const [modal, setModal] = useState(initialState)
+    // const [modal, setModal] = useState(initialState)
+    const [modal, setModal] = useState({...initialState, name: 'login'})
 
     const openModal = (name, anchorElement = null, props = {}) => {
         setModal({
