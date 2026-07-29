@@ -33,7 +33,7 @@
     }
 }
 
-.inputContainer:has(p) {
+.inputContainer.error {
     input {
         border-color: var(--error-color);
     }

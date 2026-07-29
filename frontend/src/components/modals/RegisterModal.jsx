@@ -2,6 +2,7 @@ import { useModal } from '../../hooks/useModal'
 import { useForm } from '../../hooks/useForm'
 import { validateUsername, validateEmail, validatePassword, validateConfirmPassword } from '../../utils/validators'
 import InputField from "../form/InputField"
+import PasswordChecklist from '../form/PasswordChecklist'
 
 const initialState = {
     username: '',
@@ -59,6 +60,7 @@ export default function RegisterModal() {
                     handleChange={handleChange}
                     handleBlur={handleBlur}
                     error={errors.password}
+                    helper={<PasswordChecklist password={formData.password} />}
                 />
                 <InputField 
                     label='Confirm password'

@@ -7,11 +7,9 @@ export function validateEmail(email) {
 }
 
 export function validatePassword(password) {
-    if (password.length < 6) return 'Password must consist of at least 6 symbols'
-    if (!/[0-9]/.test(password)) return 'Password must consist of at least one digit'
-    if (!/[a-z]/.test(password) || !/[A-Z]/.test(password)) return 'Password must consist of at least one uppercase and one lowercase letter' 
-    if (!/[_.+@-]/.test(password)) return 'Password must consist of at least 1 symbol (_.+@-)'
-    return ''
+    const requirements = getPasswordRequirements(password)
+    const isValid = Object.values(requirements).every(Boolean)
+    return isValid ? '' : 'Password must consist of at least 6 symbols, one digit, one uppercase and one lowercase letter, one symbol (_.+@-)'
 }
 
 export function validateConfirmPassword(confirmPassword, formData) {
@@ -22,4 +20,14 @@ export function validateConfirmPassword(confirmPassword, formData) {
 
 export function validateRequired(value) {
     return value.trim() ? '' : 'This field is required'
+}
+
+export function getPasswordRequirements(password) {
+    return {
+        minLength: password.length >= 6,
+        digit: /[0-9]/.test(password),
+        lowercase: /[a-z]/.test(password),
+        uppercase: /[A-Z]/.test(password),
+        special: /[_.+@-]/.test(password)
+    }
 }
