@@ -43,7 +43,7 @@ class AuthService:
         except (CustomUser.DoesNotExist, EmailVerification.DoesNotExist):
             raise ValidationError('Bad request')
         if not verification.check_code(validated_data['code']):
-            raise ValidationError({'code': ['Wrong or expired code']})
+            raise ValidationError({'code': 'Wrong or expired code'})
         verification.delete()
         return AuthService.create_tokens(user)
 
