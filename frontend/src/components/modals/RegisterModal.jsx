@@ -60,7 +60,7 @@ export default function RegisterModal() {
                     handleChange={handleChange}
                     handleBlur={handleBlur}
                     error={errors.password}
-                    helper={<PasswordChecklist password={formData.password} />}
+                    helper={<PasswordChecklist password={formData.password} error={errors.password} />}
                 />
                 <InputField 
                     label='Confirm password'

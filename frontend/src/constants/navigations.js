@@ -28,7 +28,7 @@ export const NAVIGATION  = [
     {
         icon: UserRound,
         text: 'Profile',
-        to: '/profile/test',
+        to: '/me',
         footer: true
     },
     {

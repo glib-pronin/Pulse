@@ -12,12 +12,10 @@ const validation_state = {
     }
 }
 
-export default function PasswordChecklist({ password }) {
-    console.log('///');
-    
+export default function PasswordChecklist({ password, error }) {
     const requirements = getPasswordRequirements(password)
 
-    if (!password) return null
+    if (!password && !error) return null
     if (Object.values(requirements).every(Boolean)) return null
 
     return (

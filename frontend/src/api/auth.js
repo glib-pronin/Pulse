@@ -18,10 +18,11 @@ export async function register(username, email, password, confirmPassword) {
 }
 
 export async function verifyEmail(email, code) {
-    return apiFetch('api/auth/verify-email', {
+    const data = await apiFetch('api/auth/verify-email', {
         method: 'POST',
         body: {email, code}
     })
+    setAccessToken(data.access)
 }
 
 export async function logout() {

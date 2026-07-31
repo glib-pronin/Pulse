@@ -47,7 +47,9 @@
   --active-theme-switcher-border-color: rgba(243, 245, 247, 0.15);
   --modal-bg-color: #101010;
   --error-color: #FF3040;
-  --success-color: #03fd20;
+  --success-color: #e4fd03;
+  --skeleton-base: #2b2f36;
+  --skeleton-highlight: #3b4048;
   
   --header-height: 70px;
   --footer-height: 50px;
@@ -74,6 +76,8 @@
         1px 1px 2px rgba(0, 0, 0, 0.05), 
         0 8px 16px rgba(0, 0, 0, 0.06);
   --modal-bg-color: #ffffff;
+  --skeleton-base: #e5e7eb;
+  --skeleton-highlight: #f3f4f6;
 }
 
 * {
