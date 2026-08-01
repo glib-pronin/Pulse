@@ -1,18 +1,26 @@
-import styles from './EmailVerificationModal.module.css'
 import { useModal } from '../../hooks/useModal'
+import { useAuth } from '../../hooks/useAuth'
+import { useNavigate } from 'react-router-dom'
 import { useState, useRef } from 'react'
+import styles from './EmailVerificationModal.module.css'
+import Spinner from '../ui/Spinner'
 
 const OTP_LENGTH = 6
 
-export default function EmailVerificationModal({ from, email }) {
+export default function EmailVerificationModal({ from, email, redirect }) {
     const { openModal, closeModal } = useModal()
-    const [codeErrror, setCodeError] = useState('')
+    const { verifyEmail } = useAuth()
+    const [codeError, setCodeError] = useState('')
+    const [serverError, setServerError] = useState('')
+    const [isSubmitting, setIsSubmitting] = useState(false)
     const [code, setCode] = useState(Array(OTP_LENGTH).fill(''))
     const inputsRef = useRef([])
+    const navigate = useNavigate()
 
     const handleChange = (value, index) => {
         if (!/^\d?$/.test(value)) return
-        if (codeErrror) setCodeError('')
+        if (codeError) setCodeError('')
+        if (serverError) setServerError('')
 
         const newCode = [...code]
         newCode[index] = value
@@ -46,12 +54,27 @@ export default function EmailVerificationModal({ from, email }) {
         inputsRef.current[Math.max(pasted.length - 1, 0)]?.focus()        
     }
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault()
         const codeValue = code.join('')
         if (codeValue.length < OTP_LENGTH) {
             setCodeError('Fill in all fields')
             return
+        }
+
+        setIsSubmitting(true)
+        try {
+            await verifyEmail({ email, code: codeValue })
+            closeModal()
+            if (redirect) navigate(redirect, {replace: true})
+        } catch(error) {
+            if (error.data?.code === 'Wrong or expired code') {
+                setCodeError(error.data.code)
+            } else {
+                setServerError('Server error. Try again later')
+            }
+        } finally {
+            setIsSubmitting(false)
         }
     }
 
@@ -63,6 +86,7 @@ export default function EmailVerificationModal({ from, email }) {
             >
                 {`To verify your account, enter the 6-digit code sent to your email (${email}) below`}
             </p>
+            {serverError && <p className='error-msg text-center'>{serverError}</p>}
             <div className={styles.container} >
                 <div className={styles.otpInputs} >
                     {code.map((value, index) => (
@@ -79,20 +103,25 @@ export default function EmailVerificationModal({ from, email }) {
                         />
                     ))}
                 </div>
-                {codeErrror && <p className='error-msg'>{codeErrror}</p>}
+                {codeError && <p className='error-msg'>{codeError}</p>}
             </div>
-            <div className={styles.btnsContainer} >
-                <button 
-                    className='primary-btn form-btn'
-                >
-                    Verify
-                </button>
-                <span
-                    onClick={() => from ? openModal(from) : closeModal()}
-                >
-                    Back
-                </span>
-            </div>
+            {isSubmitting ? (
+                    <Spinner size={50} />
+                ) : (
+                    <div className={styles.btnsContainer} >
+                        <button 
+                            className='primary-btn form-btn'
+                        >
+                            Verify
+                        </button>
+                        <span
+                            onClick={() => from ? openModal(from) : closeModal()}
+                        >
+                            Back
+                        </span>
+                    </div>
+                )
+            }
         </form>
     )
 }

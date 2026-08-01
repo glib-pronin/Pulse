@@ -11,7 +11,7 @@ export default function ProtectedRoute() {
     } 
 
     if (!user) {
-        return <Navigate to='/' replace state={{from: pathname, openLogin: true}} />
+        return <Navigate to='/' replace state={{redirect: pathname, openLogin: true}} />
     }
 
     return <Outlet />

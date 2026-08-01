@@ -3,8 +3,6 @@ import { useLocation, useNavigate } from 'react-router-dom'
 import { useEffect } from 'react'
 
 export default function FeedPage() {
-    console.log('//');
-    
     const location = useLocation()
     const navigate = useNavigate()
     const { openModal } = useModal()
@@ -12,7 +10,7 @@ export default function FeedPage() {
 
     useEffect(() => {
         if (needOpenModal) {
-            openModal('login', null, {from: location.state.from})
+            openModal('login', null, {redirect: location.state.redirect})
             navigate(location.pathname, {replace: true, state: null})
         }
     }, [needOpenModal])

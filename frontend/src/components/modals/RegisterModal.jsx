@@ -1,8 +1,11 @@
+import { validateUsername, validateEmail, validatePassword, validateConfirmPassword } from '../../utils/validators'
 import { useModal } from '../../hooks/useModal'
 import { useForm } from '../../hooks/useForm'
-import { validateUsername, validateEmail, validatePassword, validateConfirmPassword } from '../../utils/validators'
-import InputField from "../form/InputField"
+import { register } from '../../api/auth'
+import { useState } from 'react'
 import PasswordChecklist from '../form/PasswordChecklist'
+import InputField from "../form/InputField"
+import Spinner from '../ui/Spinner'
 
 const initialState = {
     username: '',
@@ -18,18 +21,37 @@ const validators = {
     confirmPassword: validateConfirmPassword,
 }
 
-export default function RegisterModal() {
-    const { openModal, closeModal } = useModal()
-    const { formData, errors, handleBlur, handleChange, validateBeforeSubmit } = useForm(initialState, validators)
+const dependencies = {
+    password: ['confirmPassword']
+}
 
-    const handleSubmit = (e) => {
+export default function RegisterModal({ redirect }) {
+    const { openModal, closeModal } = useModal()
+    const { formData, errors, handleBlur, handleChange, validateBeforeSubmit, setError } = useForm(initialState, validators, dependencies)
+    const [isSubmitting, setIsSubmitting] = useState(false)
+
+    const handleSubmit = async (e) => {
         e.preventDefault()
         if (!validateBeforeSubmit()) return
-        openModal('emailVerify', null, {from: 'register', email: 'test@gmail.com'})
+
+        setIsSubmitting(true)
+        try {
+            await register({...formData})
+            openModal('emailVerify', null, {from: 'register', email: formData.email, redirect})
+        } catch(error) {
+            if (error.status === 400) {
+                Object.entries(error.data).forEach(([name, value]) => setError(name, value[0]))
+            } else {
+                setError('formError', 'Server error. Try again later')
+            }
+        } finally {
+            setIsSubmitting(false)
+        }
     }
 
     return (
         <form action="" onSubmit={handleSubmit}>
+            {errors.formError && <p className='error-msg text-center'>{errors.formError}</p>}
             <div className="inputs-container">
                 <InputField 
                     label='Username'
@@ -73,7 +95,12 @@ export default function RegisterModal() {
                     error={errors.confirmPassword}
                 />
             </div>
-            <button className="primary-btn form-btn">Sign up</button>
+            {isSubmitting ? (
+                    <Spinner size={50} />
+                ) : (
+                    <button className="primary-btn form-btn">Sign up</button>
+                )
+            }
         </form>
     )
 }

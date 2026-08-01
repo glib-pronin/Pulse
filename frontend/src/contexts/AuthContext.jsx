@@ -29,13 +29,13 @@ export default function AuthProvider({ children }) {
         }
     }
 
-    const login = async (username, password) => {
-        await authApi.login(username, password)
+    const login = async ({ username, password }) => {
+        await authApi.login({ username, password })
         await loadUser()
     }
 
-    const verifyEmail = async (email, code) => {
-        await authApi.verifyEmail(email, code)
+    const verifyEmail = async ({ email, code }) => {
+        await authApi.verifyEmail({ email, code })
         await loadUser()
     }
 

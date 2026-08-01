@@ -25,6 +25,7 @@
     box-shadow: 
         12px -10px 8px var(--bg-color),
         -12px -10px 8px var(--bg-color);
+    pointer-events: none;
 }
 
 .header h1 {

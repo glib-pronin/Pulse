@@ -46,17 +46,17 @@ export default function ModalRoot() {
                 ) : (
                     <div 
                         className={styles.backdrop}
-                        onClick={closeModal}
+                        onMouseDown={closeModal}
                     >
                         <div 
                             className={styles.modalContainer} 
-                            onClick={(e) => e.stopPropagation()}
+                            onMouseDown={(e) => e.stopPropagation()}
                         >
                             <X 
                                 className={styles.closeBtn}
                                 onClick={closeModal} 
                             />
-                            {config.needsHeader && <LoginRegisterHeader />}
+                            {config.needsHeader && <LoginRegisterHeader {...modal.props} />}
                             <Modal {...modal.props} />
                         </div>
                     </div>

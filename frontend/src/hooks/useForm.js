@@ -1,6 +1,7 @@
+import { SERVER_ERRORS } from '../constants/serverErrors'
 import { useState } from "react"
 
-export function useForm(initialState, validators = {}) {
+export function useForm(initialState, validators = {}, dependencies = {}) {
     const [formData, setFormData] = useState(initialState)
     const [errors, setErrors] = useState({})
 
@@ -11,23 +12,43 @@ export function useForm(initialState, validators = {}) {
         })
     }
 
-    const handleChange = (e) => {
-        const { name, value } = e.target
-        setFormData(prev => ({
+    const setError = (name, error) => {
+        setErrors(prev => ({
             ...prev,
-            [name]: value
+            [name]: SERVER_ERRORS[error] ?? error
         }))
-        if (errors[name]) deleteError(name)
-        }
-    
-    const handleBlur = (e) => {
-        const { name, value } = e.target
+    }
+
+    const validate = (name, value, fD = formData) => {
         const validator = validators[name]
         if (!validator) return
 
-        const error = validator(value, formData)
+        const error = validator(value, fD)
         if (!error) deleteError(name)
-        else setErrors(prev => ({...prev, [name]: error}))
+        else setError(name, error)
+    }
+
+    const handleChange = (e) => {
+        const { name, value } = e.target
+        const newFormData = {
+            ...formData,
+            [name]: value
+        }
+        setFormData(newFormData)
+
+        if (errors[name]) deleteError(name)
+        if (errors.formError) deleteError('formError')
+        
+        dependencies[name]?.forEach(field => {
+            if (newFormData[field]) {
+                validate(field, newFormData[field], newFormData)
+            }
+        })
+    }
+    
+    const handleBlur = (e) => {
+        const { name, value } = e.target
+        validate(name, value)
     }
 
     const validateBeforeSubmit = () => {
@@ -41,7 +62,7 @@ export function useForm(initialState, validators = {}) {
     }
 
     return {
-        formData, errors,
+        formData, errors, setError,
         handleBlur, handleChange,
         validateBeforeSubmit
     }
