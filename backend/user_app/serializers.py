@@ -59,4 +59,4 @@ class MeSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = CustomUser
-        fields = ['username', 'email', 'bio', 'avatar', 'full_name']
+        fields = ['id', 'username', 'email']

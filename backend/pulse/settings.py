@@ -43,8 +43,10 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework_simplejwt',
     'rest_framework',
-    'user_app',
     'corsheaders',
+    'imagekit',
+    'user_app',
+    'post_app',
 ]
 
 MIDDLEWARE = [

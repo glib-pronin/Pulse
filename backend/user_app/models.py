@@ -3,6 +3,8 @@ from django.contrib.auth.models import AbstractUser
 from django.contrib.auth.hashers import make_password, check_password 
 from django.utils import timezone
 from datetime import timedelta
+from imagekit.models import ImageSpecField
+from imagekit.processors import ResizeToFill
 
 # Create your models here.
 
@@ -10,6 +12,12 @@ class CustomUser(AbstractUser):
     email = models.EmailField(unique=True)
     bio = models.TextField(blank=True, null=True)
     avatar = models.ImageField(upload_to='avatars/', blank=True, null=True)
+    avatar_thumbnail = ImageSpecField(
+        source='avatar',
+        processors=[ResizeToFill(200, 200)],
+        format='WEBP',
+        options={'quality': 85}
+    )
 
 class EmailVerification(models.Model):
     user = models.OneToOneField(to=CustomUser, on_delete=models.CASCADE, related_name='email_verification')
