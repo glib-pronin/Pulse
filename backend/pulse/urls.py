@@ -21,7 +21,8 @@ from .settings import DEBUG, MEDIA_ROOT, MEDIA_URL
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('api/auth/', include('user_app.urls'))
+    path('api/auth/', include('user_app.urls')),
+    path('api/', include('post_app.urls')),
 ]
 
 if DEBUG:
