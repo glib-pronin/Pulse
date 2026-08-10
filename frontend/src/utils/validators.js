@@ -31,3 +31,9 @@ export function getPasswordRequirements(password) {
         special: /[_.+@-]/.test(password)
     }
 }
+
+export function validatePostText(text) {
+    const requiredError = validateRequired(text) 
+    if (requiredError) return requiredError
+    return text.trim().length > 1000 ? 'Text cannot exceed 1000 characters' : '' 
+}

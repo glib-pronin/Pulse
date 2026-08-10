@@ -1,0 +1,90 @@
+.imgBtn {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    width: fit-content;
+    background-color: transparent;
+    cursor: pointer;
+    color: var(--secondary-text-color);
+    font-size: 15px;
+    transition: color 0.25s ease;
+
+    svg {
+        width: 2opx;
+        height: 20px;
+    }
+}
+
+.imgBtn:hover {
+    color: var(--main-text-color);
+}
+
+.imgBtn:disabled {
+    color: var(--secondary-text-color);
+    cursor: not-allowed;
+}
+
+.imgsWrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.imgsConatiner {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    width: 100%;
+    overflow-x: auto;
+    scrollbar-width: none;
+    cursor: grab;
+}
+
+.imgsConatiner:active {
+    cursor: grabbing;
+    user-select: none;
+}
+
+.image {
+    border-radius: 10px;
+    height: 235px;
+    width: fit-content;
+    flex-shrink: 0;
+    overflow: hidden;
+    position: relative;
+
+    img {
+        height: 100%;
+        width: auto;
+        max-width: 250px;
+        object-fit: cover;
+        pointer-events: none;
+    }
+}
+
+.image button {
+    position: absolute;
+    z-index: 10;
+    top: 10px;
+    right: 10px;
+    height: 26px;
+    width: 26px;
+    border-radius: 100px;
+    background-color: var(--bg-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    
+    svg {
+        color: var(--main-text-color);
+        height: 16px;
+        width: 16px;
+    }
+}
+
+@media (max-width: 700px) {
+    .imgsConatiner {
+        gap: 8px;
+    }
+}

@@ -5,10 +5,12 @@ import { NavLink, Link } from 'react-router-dom'
 import { NAVIGATION } from '../constants/navigations'
 import { useModal } from '../hooks/useModal'
 import { useRef } from 'react'
+import { useRequireAuth } from '../hooks/useRequireAuth'
 
 export default function Sidebar() {
     const { openModal } = useModal()
     const anchorRef = useRef(null)
+    const requireAuth = useRequireAuth()
 
     return (
         <div className={styles.sidebar}>
@@ -19,7 +21,7 @@ export default function Sidebar() {
                 <LogoIconBig />
             </Link>
             <div className={styles.linksContainer}>
-                {NAVIGATION.map(({ icon: Icon, text, to, clickable }) => 
+                {NAVIGATION.map(({ icon: Icon, text, to, use }) => 
                     to ? (
                         <NavLink
                             key={text}
@@ -32,9 +34,13 @@ export default function Sidebar() {
                     ) : (
                         <button
                             key={text}
-                            ref={clickable ? anchorRef : null}
+                            ref={use === 'theme' ? anchorRef : null}
                             className={styles.link}
-                            onClick={clickable ? () => openModal('theme', anchorRef.current) : null}
+                            onClick={use === 'theme' ? (
+                                () => openModal('theme', anchorRef.current)
+                            ) : (
+                                () => requireAuth(() => openModal('post', null, {type: 'create'}))
+                            )}
                         >
                             <Icon className={styles.icon} />
                             <span className={styles.hoverShow} >{text}</span>

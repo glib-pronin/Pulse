@@ -87,6 +87,24 @@
   font-family: "GT Walsheim Pro", "arial";
 }
 
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
 button {
   border: none;
   outline: none;
@@ -173,13 +191,23 @@ input:-webkit-autofill:active {
     -webkit-text-fill-color: var(--main-text-color) !important;
 }
 
-input {
+input, textarea {
   outline: none;
   border: 1px solid var(--active-theme-switcher-border-color);
+  border-top: none;
   border-radius: 10px;
 }
 
-input:focus {
+input[type="file"] {
+  display: none;
+}
+
+textarea {
+  resize: none;
+  height: 110px !important;
+}
+
+input:focus, textarea:focus {
   border-color: var(--main-text-color);
 }
 

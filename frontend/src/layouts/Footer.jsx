@@ -2,9 +2,13 @@ import styles from './Footer.module.css'
 import { NAVIGATION } from '../constants/navigations'
 import { NavLink } from 'react-router-dom'
 import { useState, useEffect } from 'react'
+import { useRequireAuth } from '../hooks/useRequireAuth'
+import { useModal } from '../hooks/useModal'
 
 export default function Footer() {
-        const [showFooter, setShowFooter] = useState(true)
+    const [showFooter, setShowFooter] = useState(true)
+    const { openModal } = useModal()
+    const requireAuth = useRequireAuth()
 
     useEffect(() => {
         let lastScroll = window.scrollY
@@ -32,6 +36,7 @@ export default function Footer() {
                     <button
                         key={text}
                         className={`${styles.link} ${styles.postBtn}`}
+                        onClick={() => requireAuth(() => openModal('post', null, {type: 'create'}))}
                     >
                         <Icon />
                     </button>

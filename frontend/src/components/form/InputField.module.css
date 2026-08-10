@@ -5,6 +5,8 @@
     gap: 8px;
     position: relative;
     flex: 1 0 0;
+    border-top: 1px solid var(--active-theme-switcher-border-color);
+    border-radius: 10px;
 }
 
 .inputContainer label {
@@ -16,15 +18,21 @@
     transform: translateY(-50%);
 }
 
-.inputContainer input {
-    background-color: inherit;
-    padding: 20px;
-    font-size: 16px;
-    color: var(--main-text-color);
+.inputContainer { 
+    input, textarea {
+        background-color: inherit;
+        padding: 20px;
+        font-size: 16px;
+        color: var(--main-text-color);
+        position: relative;
+    }
 }
 
-.inputContainer:has(input:focus) {
-    input {
+.inputContainer:has(input:focus),
+.inputContainer:has(textarea:focus) {
+    border-color: var(--main-text-color);
+
+    input, textarea {
         border-color: var(--main-text-color);
     }
     
@@ -34,7 +42,9 @@
 }
 
 .inputContainer.error {
-    input {
+    border-color: var(--error-color);
+
+    input, textarea {
         border-color: var(--error-color);
     }
 

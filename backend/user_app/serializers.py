@@ -52,11 +52,6 @@ class CookieTokenRefreshSerializer(TokenRefreshSerializer):
         return super().validate(attrs)
 
 class MeSerializer(serializers.ModelSerializer):
-    full_name = serializers.SerializerMethodField()
-
-    def get_full_name(Self, obj):
-        return f'{obj.first_name} {obj.last_name}'
-
     class Meta:
         model = CustomUser
         fields = ['id', 'username', 'email']
