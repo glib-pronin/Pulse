@@ -39,7 +39,8 @@ export default function Sidebar() {
                             onClick={use === 'theme' ? (
                                 () => openModal('theme', anchorRef.current)
                             ) : (
-                                () => requireAuth(() => openModal('post', null, {type: 'create'}))
+                                // () => requireAuth(() => openModal('post', null, {type: 'create'}))
+                                () => requireAuth(() => openModal('post', null, {type: 'update', id: 12}))
                             )}
                         >
                             <Icon className={styles.icon} />

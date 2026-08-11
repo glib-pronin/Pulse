@@ -1,5 +1,5 @@
 from rest_framework_simplejwt.serializers import TokenRefreshSerializer
-from rest_framework.exceptions import ValidationError
+from rest_framework.exceptions import AuthenticationFailed
 from rest_framework import serializers
 from .models import *
 import re
@@ -47,7 +47,7 @@ class CookieTokenRefreshSerializer(TokenRefreshSerializer):
     def validate(self, attrs):
         refresh = self.context['request'].COOKIES.get('refresh')
         if not refresh:
-            raise ValidationError({'detail': 'Refresh token not found.'})
+            raise AuthenticationFailed({'detail': 'Refresh token not found.'})
         attrs['refresh'] = refresh
         return super().validate(attrs)
 

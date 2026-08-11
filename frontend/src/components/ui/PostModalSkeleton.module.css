@@ -1,0 +1,11 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.images {
+    display: flex;
+    gap: 16px;
+    overflow-x: hidden;
+}

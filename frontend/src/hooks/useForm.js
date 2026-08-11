@@ -62,7 +62,8 @@ export function useForm(initialState, validators = {}, dependencies = {}) {
     }
 
     return {
-        formData, errors, setError,
+        formData, setFormData, 
+        errors, setError,
         handleBlur, handleChange,
         validateBeforeSubmit
     }

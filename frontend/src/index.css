@@ -194,7 +194,6 @@ input:-webkit-autofill:active {
 input, textarea {
   outline: none;
   border: 1px solid var(--active-theme-switcher-border-color);
-  border-top: none;
   border-radius: 10px;
 }
 
