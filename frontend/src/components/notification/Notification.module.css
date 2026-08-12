@@ -1,0 +1,56 @@
+.notification {
+    width: 320px;
+    padding: 16px;
+    border-radius: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--main-text-color);
+    color: var(--primary-btn-text-color);
+    font-weight: 500;
+    position: fixed;
+    z-index: 1000;
+    left: 50%;
+    bottom: 20px;
+    transform: translateX(-50%);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.25);
+    animation: notifications-in .25s ease-out forwards;
+
+    a {
+        color: inherit;
+    }
+}
+
+.content {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.onlyText {
+    width: fit-content;
+}
+
+@keyframes notifications-in {
+    0% {
+        bottom: -100px;
+    }
+    
+    100% {
+        bottom: 20px;
+    }
+}
+
+.hide {
+    animation: notifications-out .25s ease-out forwards;
+}
+
+@keyframes notifications-out {
+    0% {
+        bottom: 20px;
+    }
+    
+    100% {
+        bottom: -100px;
+    }
+}

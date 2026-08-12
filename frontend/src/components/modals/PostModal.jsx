@@ -3,8 +3,9 @@ import { useForm } from "../../hooks/useForm"
 import { useDragScroll } from '../../hooks/useDragScroll'
 import { useState, useRef, useEffect } from "react"
 import { validatePostText } from '../../utils/validators'
-import PostModalSkeleton from '../ui/PostModalSkeleton'
 import { Image, X } from 'lucide-react'
+import { useNotification } from '../../hooks/useNotification'
+import PostModalSkeleton from '../ui/PostModalSkeleton'
 import TextareaField from "../form/TextareaField"
 import styles from './PostModal.module.css'
 import * as postApi from '../../api/post'
@@ -24,6 +25,7 @@ export default function PostModal({ type, id }) {
     const isCreation = type === 'create'
     const [isLoading, setIsLoading] = useState(!isCreation)
     const { closeModal } = useModal()
+    const { showNotification } = useNotification()
 
     const [post, setPost] = useState(null)
     const [newImages, setNewImages] = useState([]) 
@@ -123,14 +125,18 @@ export default function PostModal({ type, id }) {
         const promise = isCreation ? postApi.createPost(data) : postApi.updatePost(id, data)
 
         closeModal()
+        showNotification({ icon: 'loading', text: isCreation ?  'Creating...' : 'Updating...', autoHide: false })
 
         promise
             .then(post => {
-                console.log(post)
-                console.log(isCreation ? 'Post successfully created' : 'Post successfully updated')
+                showNotification({ 
+                    icon: 'success', 
+                    text: isCreation ? 'Created' : 'Updated',
+                    url: '/me' 
+                })
             })
             .catch(error => {
-                console.log('Server error. Try again later');
+                showNotification({ icon: 'error', text: 'Server error. Try again later' })
             })
     }
     

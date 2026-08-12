@@ -4,6 +4,7 @@ import Header from './Header'
 import Sidebar from './Sidebar'
 import Footer from './Footer'
 import ModalRoot from '../components/modals/ModalRoot'
+import Notification from '../components/notification/Notification'
 
 export default function MainLayout() {
     const isMobile = useMediaQuery('(max-width: 700px)')
@@ -23,6 +24,7 @@ export default function MainLayout() {
                 )
             }
             <ModalRoot />
+            <Notification />
         </>
     )
 }
